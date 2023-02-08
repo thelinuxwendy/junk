@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 
 ENV DOMAINNAME=some.domain
-ENV ACMEEMAIL=devops@routable.com
+ENV ACMEEMAIL=devops@some.domain
 
 # install base deps and stuff
 RUN apt-get update -y
