@@ -18,8 +18,8 @@ RUN apt-get install -y certbot
 EXPOSE 80 443 22
 
 # cert stuff for frontend
-ADD fullchain.pem /etc/letsencrypt/live/frontend/fullchain.pem
-ADD private.pem /etc/letsencrypt/live/frontend/private.pem
+ADD fullchain.pem /etc/letsencrypt/live/${DOMAINNAME}/fullchain.pem
+ADD private.pem /etc/letsencrypt/live/${DOMAINNAME}/private.pem
 
 # work dir
 WORKDIR /etc
@@ -31,3 +31,6 @@ ADD docker-entrypoint.sh .
 VOLUME ["/etc/letsencrypt"]
 
 CMD ["/etc/docker-entrypoint.sh"]
+
+COPY /etc/letsencrypt/live/${DOMAINNAME}/fullchain.pem .
+COPY /etc/letsencrypt/live/${DOMAINNAME}/private.pem .
